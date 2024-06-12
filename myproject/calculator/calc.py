@@ -5,8 +5,10 @@ class Calc:
         self.a=a
         self.b=b
         self.operation=operation
-def res(self):
-    return self.operation(self.a, self.b)
+    def res(self):
+        return self.operation(self.a, self.b)        
+    
+
 
 class Calculator:
     @staticmethod
