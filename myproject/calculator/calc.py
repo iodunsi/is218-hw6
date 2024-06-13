@@ -31,4 +31,18 @@ class Calculator:
     @staticmethod
     def divide(a,b):
         return Calculator._calc(a,b, divide)
+    
+    #@classmethod
+   # def get_history(cls):
+   #     return cls.history
+    
+   # @classmethod 
+   # def clear_history(cls):
+   #     cls.history = []
+
+   # @classmethod
+   # def print_history(cls):
+   #     for calc in cls.history:
+   #         print (f'')
+
 
