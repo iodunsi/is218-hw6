@@ -43,6 +43,6 @@ class Calculator:
     @classmethod
     def print_history(cls):
         for calc in cls.history:
-             print (f'{calc.a} {calc.op} {calc.b} = {calc.res()}'))
+             print (f'{calc.a} {calc.op} {calc.b} = {calc.res()}')
 
 
