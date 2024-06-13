@@ -2,7 +2,7 @@
 import pytest
 from calculator import add, subtract, multiply, divide
 from calculator import Calculator
-@pytest.mark.parametrize("a, b, outcome",
+@pytest.mark.parametrize("num1, num2, outcome",
 [
    (2,2,4),
    (1,1,2),
@@ -11,12 +11,12 @@ from calculator import Calculator
 
 ])
 
-def test_addition(a, b, outcome):
+def test_addition(num1, num2, outcome):
     '''Test that addition function works '''    
-    assert add (a,b) == outcome
+    assert add (num1, num2) == outcome
 
 
-@pytest.mark.parametrize("a, b, outcome",
+@pytest.mark.parametrize("num1, num2, outcome",
 [
    (2,2,0),
    (1,1,0),
@@ -26,12 +26,12 @@ def test_addition(a, b, outcome):
 ])
 
 
-def test_subtraction(a, b, outcome):
+def test_subtraction(num1, num2, outcome):
     '''Test that - function works '''    
     #assert (subtract(2,2==0))
-    assert subtract(a,b) == outcome
+    assert subtract(num1, num2) == outcome
 
-@pytest.mark.parametrize("a, b, outcome",
+@pytest.mark.parametrize("num1, num2, outcome",
 [
    (2,2,4),
    (1,1,1),
@@ -40,12 +40,12 @@ def test_subtraction(a, b, outcome):
 
 ])
 
-def test_multi(a,b, outcome):
+def test_multi(num1, num2, outcome):
     '''Test that x function works '''    
-    assert multiply(a,b) == outcome
+    assert multiply(num1, num2) == outcome
 
 
-@pytest.mark.parametrize("a, b, outcome",
+@pytest.mark.parametrize("num1, num2, outcome",
 [
    (2,2,1),
    (1,1,1),
@@ -55,15 +55,13 @@ def test_multi(a,b, outcome):
 ])
 
 
-def test_div(a,b,outcome):
-    if b ==0:
+def test_div(num1, num2, outcome):
+    '''Test that division function works'''    
+    if num2 == 0:
         with pytest.raises(ValueError):
-            divide(a,b)
+            divide(num1, num2)
     else:
-        assert divide(a,b) == outcome
-    '''Test that / function works '''    
-    assert divide(a,b) == outcome 
-
+        assert divide(num1, num2) == outcome
 
 def calc_hist():
     '''Making sure calc hist. is all good'''
@@ -77,29 +75,4 @@ def calc_hist():
 
 if __name__ == "__main__":
     pytest.main()
-    '''
-    Commenting out old testing logic
-    try:
-        test_addition()
-        print("Addition works")
-    except AssertionError:
-        print("Something went wrong.")
-
-    try:
-        test_subtraction()
-        print("Subtraction works")
-    except AssertionError:
-        print("Something went wrong.")
-
-    try:
-        test_multi()
-        print("Multiplication works")
-    except AssertionError:
-        print("Something went wrong.")
-
-    try:
-        test_div()
-        print("Division works")
-    except AssertionError:
-        print("Something went wrong.")
-    '''
+ 
