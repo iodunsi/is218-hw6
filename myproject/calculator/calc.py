@@ -32,17 +32,17 @@ class Calculator:
     def divide(a,b):
         return Calculator._calc(a,b, divide)
     
-    #@classmethod
-   # def get_history(cls):
-   #     return cls.history
+    @classmethod
+    def get_history(cls):
+      return cls.history
     
-   # @classmethod 
-   # def clear_history(cls):
-   #     cls.history = []
+    @classmethod 
+    def clear_history(cls):
+        cls.history = []
 
-   # @classmethod
-   # def print_history(cls):
-   #     for calc in cls.history:
-   #         print (f'')
+    @classmethod
+    def print_history(cls):
+        for calc in cls.history:
+             print (f'{calc.a} {calc.op} {calc.b} = {calc.res()}'))
 
 
