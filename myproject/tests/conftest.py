@@ -32,7 +32,7 @@ def pytest_addoption(parser):
     parser.addoption("--num_records", action="store", default=5, type=int, help="Number of test records to generate")
 
 def pytest_generate_tests(metafunc):
-    if {"num1", "num2", "operation", "outcome"}.intersection(set(metafunc.fixturenames)):
+    if {"num1", "num2", "op_name", "operation", "outcome"}.intersection(set(metafunc.fixturenames)):
         num_records = metafunc.config.getoption("num_records")
         parameters = list(gen_test_data(num_records))
-        metafunc.parametrize("num1,num2,operation,outcome", parameters)
+        metafunc.parametrize("num1,num2, op_name, operation,outcome", parameters)
