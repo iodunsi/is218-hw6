@@ -1,26 +1,20 @@
-from abc import ABC, abstractmethod
-
-class Command(ABC):
-    @abstractmethod
-    def execute(self):
-        pass
-
 class CommandHandler:
     def __init__(self):
+        """function passes commands"""
         self.commands = {}
 
-    def register_command(self, command_name: str, command: Command):
-        self.commands[command_name] = command
+    def register_command(self, name, command):
+        """register function for commands"""
+        self.commands[name] = command
 
-    def execute_command(self, command_name: str):
-        """ Look before you leap (LBYL) - Use when its less likely to work
-        if command_name in self.commands:
-            self.commands[command_name].execute()
+    def execute_command(self, name):
+        """execute function for commands"""
+        command = self.commands.get(name)
+        if command:
+            command.execute()
         else:
-            print(f"No such command: {command_name}")
-        """
-        """Easier to ask for forgiveness than permission (EAFP) - Use when its going to most likely work"""
-        try:
-            self.commands[command_name].execute()
-        except KeyError:
-            print(f"No such command: {command_name}")
+            print(f"No such command: {name}")
+
+class Command:
+    def execute(self):
+        raise NotImplementedError("Command subclasses must implement `execute` method")
