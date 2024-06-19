@@ -1,27 +1,26 @@
-from app.commands import CommandHandler
-from app.commands.add import AddCommand 
-from app.commands.divide import DivideCommand
-from app.commands.multiply import MultCommand
-from app.commands.subtract import SubCommand 
-from app.commands.menu import MenuCommand
+from abc import ABC, abstractmethod
 
-class App:
-    def __init__(self): # Constructor
-        '''Config init function'''
-        self.command_handler = CommandHandler()
+class Command(ABC):
+    @abstractmethod
+    def execute(self):
+        pass
 
+class CommandHandler:
+    def __init__(self):
+        self.commands = {}
 
-    def start(self):
-        '''Start function to initiate'''
-        # Register commands here
-        self.command_handler.register_command("add", AddCommand())
-        self.command_handler.register_command("divide", DivideCommand())
-        self.command_handler.register_command("muliply", MultCommand())
-        self.command_handler.register_command("subtract", SubCommand())
-        self.command_handler.register_command("menu", MenuCommand())
+    def register_command(self, command_name: str, command: Command):
+        self.commands[command_name] = command
 
-        print("Type 'exit' to exit.")
-        while True:  #REPL Read, Evaluate, Print, Loop
-            self.command_handler.execute_command(input(">>> ").strip())
-
-
+    def execute_command(self, command_name: str):
+        """ Look before you leap (LBYL) - Use when its less likely to work
+        if command_name in self.commands:
+            self.commands[command_name].execute()
+        else:
+            print(f"No such command: {command_name}")
+        """
+        """Easier to ask for forgiveness than permission (EAFP) - Use when its going to most likely work"""
+        try:
+            self.commands[command_name].execute()
+        except KeyError:
+            print(f"No such command: {command_name}")
