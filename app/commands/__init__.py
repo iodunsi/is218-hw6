@@ -7,10 +7,12 @@ from app.commands.menu import MenuCommand
 
 class App:
     def __init__(self): # Constructor
+        '''Config init function'''
         self.command_handler = CommandHandler()
 
 
     def start(self):
+        '''Start function to initiate'''
         # Register commands here
         self.command_handler.register_command("add", AddCommand())
         self.command_handler.register_command("divide", DivideCommand())
