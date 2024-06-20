@@ -7,14 +7,14 @@ class CommandHandler:
         """register function for commands"""
         self.commands[name] = command
 
-    def execute_command(self, name):
+    def execute_command(self, name, *args):
         """execute function for commands"""
         command = self.commands.get(name)
         if command:
-            command.execute()
+            command.execute(*args)
         else:
             print(f"No such command: {name}")
 
 class Command:
-    def execute(self):
+    def execute(self, *args):
         raise NotImplementedError("Command subclasses must implement `execute` method")

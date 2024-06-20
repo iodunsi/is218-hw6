@@ -11,7 +11,7 @@ def test_add(capfd):
     command = AddCommand()
     command.execute(1,2)
     out, err = capfd.readouterr()
-    assert out.strip() == "Result: 3"
+    assert out.strip() == "Result: 3.0"
 
 
 def test_sub(capfd):
@@ -19,14 +19,14 @@ def test_sub(capfd):
     command = SubCommand()
     command.execute(5,3)
     out, err = capfd.readouterr()
-    assert out.strip() == "Result: 2"
+    assert out.strip() == "Result: 2.0"
 
 def test_mul(capfd):
     """Testing multiplication command"""
     command = MultCommand()
     command.execute(3,4)
     out,err = capfd.readouterr()
-    assert out.strip() == "Result: 12"
+    assert out.strip() == "Result: 12.0"
 
 
 def test_div(capfd):
