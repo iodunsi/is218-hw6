@@ -2,8 +2,13 @@ from app.commands import Command
 
 class DivideCommand(Command):
     '''Dividing command'''
-    def divide(a, b):
-        if b == 0:
-            raise ValueError("Division by Zero isn't permitted.")
-        return a / b
+  #  def __init__(self):
+ #        pass
 
+def execute(self, args):
+        a,b = map(float,args)
+        if b == 0:
+            print("Error: Division by zero")
+        else:
+            result = a / b
+            print(f"Result: {result}")

@@ -8,11 +8,15 @@ def test_app_menu_command(capfd, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
     app = App()
-    
-    app.command_handler.execute_command('menu')
+    app.start()    
 
-    captured = capfd.readouterr()
-    assert "Available commands:" in captured.out
+    out, err = capfd.readouterr()
+    assert "Available commands:" in out
+    assert "- add" in out
+    assert "- subtract" in out
+    assert "- multiply" in out
+    assert "- divide" in out
+    assert "- menu" in out
 
 def test_app_add_command(capfd, monkeypatch):
     """Test that the REPL correctly handles the 'add' command."""
@@ -21,11 +25,12 @@ def test_app_add_command(capfd, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
     app = App()
-    
+    app.start()    
+
     app.command_handler.execute_command('add')
 
-    captured = capfd.readouterr()
-    assert "The result is: 30.0" in captured.out
+    out, err = capfd.readouterr()
+    assert "The result is: 30.0" in out
 
 def test_app_subtract_command(capfd, monkeypatch):
     """Test that the REPL correctly handles the 'subtract' command."""
@@ -34,11 +39,12 @@ def test_app_subtract_command(capfd, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
     app = App()
-    
+    app.start()    
+
     app.command_handler.execute_command('subtract')
 
-    captured = capfd.readouterr()
-    assert "The result is: 10.0" in captured.out
+    out, err = capfd.readouterr()
+    assert "The result is: 10.0" in out
 
 def test_app_multiply_command(capfd, monkeypatch):
     """Test that the REPL correctly handles the 'multiply' command."""
@@ -47,11 +53,12 @@ def test_app_multiply_command(capfd, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
     app = App()
-    
+    app.start()    
+
     app.command_handler.execute_command('multiply')
 
-    captured = capfd.readouterr()
-    assert "The result is: 12.0" in captured.out
+    out, err = capfd.readouterr()
+    assert "The result is: 12.0" in out
 
 def test_app_divide_command(capfd, monkeypatch):
     """Test that the REPL correctly handles the 'divide' command."""
@@ -60,11 +67,12 @@ def test_app_divide_command(capfd, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
     app = App()
-    
+    app.start()    
+
     app.command_handler.execute_command('divide')
 
-    captured = capfd.readouterr()
-    assert "The result is: 4.0" in captured.out
+    out, err = capfd.readouterr()
+    assert "The result is: 4.0" in out
 
 def test_app_divide_by_zero_command(capfd, monkeypatch):
     """Test that the REPL correctly handles division by zero."""
@@ -73,11 +81,12 @@ def test_app_divide_by_zero_command(capfd, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
     app = App()
-    
+    app.start()    
+
     app.command_handler.execute_command('divide')
 
-    captured = capfd.readouterr()
-    assert "Division by Zero isn't permitted." in captured.out
+    out, err = capfd.readouterr()
+    assert "Division by Zero isn't permitted." in out
 
 def test_app_unknown_command(capfd, monkeypatch):
     """Test how the REPL handles an unknown command."""
@@ -86,8 +95,9 @@ def test_app_unknown_command(capfd, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
     app = App()
-    
+    app.start()    
+
     app.command_handler.execute_command('unknown_command')
 
-    captured = capfd.readouterr()
-    assert "No such command: unknown_command" in captured.out
+    out, err = capfd.readouterr()
+    assert "No such command: unknown_command" in out
