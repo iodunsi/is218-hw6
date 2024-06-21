@@ -1,9 +1,9 @@
 import pytest 
-from app.commands.add import AddCommand
-from app.commands.subtract import SubCommand
-from app.commands.multiply import MultCommand
-from app.commands.divide import DivideCommand
-from app.commands.menu import MenuCommand
+from app.plugins.add import AddCommand
+from app.plugins.subtract import SubCommand
+from app.plugins.multiply import MultCommand
+from app.plugins.divide import DivideCommand
+from app.plugins.menu import MenuCommand
 
 
 def test_add(capfd):

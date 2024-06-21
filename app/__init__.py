@@ -1,10 +1,9 @@
 from app.commands import CommandHandler
-from app.commands.add import AddCommand 
-from app.commands.divide import DivideCommand
-from app.commands.multiply import MultCommand
-from app.commands.subtract import SubCommand 
-from app.commands.menu import MenuCommand
-
+from app.plugins.add import AddCommand
+from app.plugins.divide import DivideCommand
+from app.plugins.multiply import MultCommand
+from app.plugins.subtract import SubCommand
+from app.plugins.menu import MenuCommand
 class App:
     def __init__(self): # Constructor
         '''Config init function'''
@@ -12,13 +11,11 @@ class App:
 
     def start(self):
         '''Start function to initiate'''
-        # Register commands here
         self.command_handler.register_command("add", AddCommand())
         self.command_handler.register_command("divide", DivideCommand())
         self.command_handler.register_command("multiply", MultCommand())
         self.command_handler.register_command("subtract", SubCommand())
         self.command_handler.register_command("menu", MenuCommand())
-
         while True:
             try:
                 user_input = input(">>> ").strip()
